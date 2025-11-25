@@ -35,17 +35,24 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title), backgroundColor: Colors.green),
+      appBar: AppBar(
+        title: Text(widget.title, style: const TextStyle(fontWeight: FontWeight.bold)),
+        backgroundColor: Colors.green.shade700,
+      ),
       body: Center(
         child: initialized
-            ? AspectRatio(
-          aspectRatio: _controller.value.aspectRatio,
-          child: VideoPlayer(_controller),
+            ? ClipRRect(
+          borderRadius: BorderRadius.circular(16),
+          child: AspectRatio(
+            aspectRatio: _controller.value.aspectRatio,
+            child: VideoPlayer(_controller),
+          ),
         )
             : const CircularProgressIndicator(),
       ),
       floatingActionButton: initialized
           ? FloatingActionButton(
+        backgroundColor: Colors.green,
         onPressed: () {
           setState(() {
             _controller.value.isPlaying
@@ -60,3 +67,6 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
     );
   }
 }
+
+
+
